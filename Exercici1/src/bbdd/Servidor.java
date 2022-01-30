@@ -110,11 +110,12 @@ public class Servidor {
         File inputFile = new File("bbdd.txt");
         File tempFile = new File("tmp.txt");
 
-        boolean r;
-        try (BufferedReader reader = new BufferedReader(new FileReader(inputFile)); 
-            BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
+        boolean r = false;
+        try (
+            BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))
+        ) {
             String construct;
-            r = false;
             while ((construct = reader.readLine()) != null) {
                 String arr[] = construct.split("\t");
                 String idFile = arr[0];
@@ -124,8 +125,6 @@ public class Servidor {
                     writer.write(construct + "\n");
                 }
             }
-            inputFile.delete();
-            tempFile.renameTo(inputFile);
         }
         return r;
     }

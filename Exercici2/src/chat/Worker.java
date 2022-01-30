@@ -4,14 +4,14 @@ import java.net.*;
 import java.io.*;
 import org.json.JSONObject;
 
-public class ClientWorker implements Runnable {
+public class Worker implements Runnable {
     private final Socket client;
 
-    public ClientWorker(Socket c) {
+    public Worker(Socket c) {
         client = c;
     }
 
-    private String writeOnFile(String nameFile1, String nameFile2, Message m) throws IOException {
+    private String writeOnFile(String nameFile1, String nameFile2, Mnsg m) throws IOException {
         File chat = new File(nameFile1 + "_server");
         if (chat.exists()) {
             writeFile(m.getText(), chat);
@@ -58,7 +58,7 @@ public class ClientWorker implements Runnable {
                     String JsonString = bf.readLine();
                     
                     JSONObject jsonObject = new JSONObject(JsonString);
-                    Message m = new Message((String) jsonObject.get("dniOrigin"), (String) jsonObject.get("dniDestiny"), (String) jsonObject.get("text"));
+                    Mnsg m = new Mnsg((String) jsonObject.get("dniOrigin"), (String) jsonObject.get("dniDestiny"), (String) jsonObject.get("text"));
                     
                     doc = writeOnFile(m.getUserOrigin() + m.getUserDestiny(),m.getUserDestiny() + m.getUserOrigin(), m);
                     sendFile(doc, client);

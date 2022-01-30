@@ -1,11 +1,11 @@
 package chat;
 
-public class Message {
+public class Mnsg {
     String dniOrigin;
     String dniDestiny;
     String text;
 
-    public Message(String userOrigin, String userDestiny, String text) {
+    public Mnsg(String userOrigin, String userDestiny, String text) {
         this.dniOrigin = userOrigin;
         this.dniDestiny = userDestiny;
         this.text = text;

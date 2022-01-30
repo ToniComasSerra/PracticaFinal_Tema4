@@ -4,7 +4,7 @@ import java.io.*;
 import java.net.*;
 import org.json.JSONObject;
 
-public class EchoClient {
+public class Cliente {
     public static BufferedReader getFlujo(InputStream is) {
         InputStreamReader isr = new InputStreamReader(is);
         BufferedReader bfr = new BufferedReader(isr);
@@ -68,7 +68,7 @@ public class EchoClient {
                 socket.connect(direccion);
                 String txt = ask("\nEscribe el mensaje a enviar: \n");
                 
-                Message m = new Message(dniOrigin, dniDestiny, txt);
+                Mnsg m = new Mnsg(dniOrigin, dniDestiny, txt);
                 json = jsonConstruct(m.getUserOrigin(), m.getUserDestiny(), m.getText());
                 sendToServerJson(socket, json);
                 saveFile(socket, dniOrigin + dniDestiny);
